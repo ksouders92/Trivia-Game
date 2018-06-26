@@ -3,9 +3,7 @@ html {
     min-height: 100%;
 }
 #container {
-    color: darkgrey;
     font-family: 'Cagliostro', sans-serif;
-   
 }
 
 header, footer{
@@ -16,11 +14,11 @@ header, footer{
     position: relative;
 }
 
-#startBtn {
+#startBtn, #playAgain {
     height: 100px;
     width: 500px;
     margin-top: 80px;
-    background-color: darkgray;
+    background-color:rrgb(78, 77, 77);
     color: rgb(5, 5, 5);
     font-size: 30px;
     font-style: italic;
@@ -29,8 +27,19 @@ header, footer{
 
     #jpg {
         padding-top: 25px;
-    }
+    } 
 
     .answerList{
         line-height: 200%;
+        font-size: 18px;   
     }
+
+    .thisChoice:hover {
+        color: lightgrey;
+        cursor: pointer;
+      }
+    
+
+        
+
+    

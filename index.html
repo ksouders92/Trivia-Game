@@ -15,9 +15,11 @@
         crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./Assets/CSS/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <!-- Picture for icon on title tab -->
     <link rel="icon" href="./Assets/Images/pink_paws.gif">
-    
+
 
 </head>
 
@@ -36,30 +38,54 @@
             </div>
         </div>
         <!-- Question page -->
-        <div id=timeLeft></div>
-        <div id=currentQuestion></div>
-        <div class='question'></div>
-        <div class='answerList'></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <div id=timeLeft></div>
+                    <div id=currentQuestion></div>
+                    <div class='question'></div>
+                    <div class='answerList'></div>
+                </div>
+            </div>
+        </div>
 
         <!-- Answer Page -->
-        <div id=message></div>
-        <div id=correctedAnswer></div>
-        <div id=jpg></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <div id=message></div>
+                    <div id=correctedAnswer></div>
+                    <div id=jpg></div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Scoreboard -->
-        <div id=finalMessage></div>
-        <div id=correctAnswers></div>
-        <div id=incorrectAnswers></div>
-        <div id=unanswered></div>
-        <div id='playAgainBtn'></div>
-
-     
-
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <div id=finalMessage></div>
+                    <div id=correctAnswers></div>
+                    <div id=incorrectAnswers> </div>
+                    <div id=unanswered> </div>
+                    <br>
+                    <div id='playAgain' button type="button" class="btn btn-dark-outline">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
- <footer>
-    
- </footer>
+
+
+
+
+    <footer>
+
+    </footer>
 
     <!-- jQuery Library -->
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="

@@ -77,12 +77,8 @@ var messages = {
     incorrect: "Sorry, that's not correct.",
     endTime: "Out of time!",
 	finished: "Let's see how you did...",
-	perfectScore: "You know your dog knowledge!",
-	goodScore: "Pretty impressive",
-	okayScore: "You know some stuff but have some learning to do!",
-	badScore: "Not the best...",
-	terribleScore: "Yikes...are you a cat person?"
-}
+};
+
 
 // Start button
 $('#startBtn').on('click', function () {
@@ -91,11 +87,11 @@ $('#startBtn').on('click', function () {
 });
 
 // Play again button
-// Not sure how to get this to stay hidden until end of the game
 $('#playAgain').on('click', function () {
     $(this).hide();
     newGame();
 });
+
 
 // **** Functions ****
 // new game
@@ -104,7 +100,7 @@ function newGame() {
     $('#finalMessage').empty();
     $('#correctAnswers').empty();
     $('#incorrectAnswers').empty();
-    $('#unanswered').empty();
+	$('#unanswered').empty();
     currentQuestion = 0;
     correctAnswer = 0;
     incorrectAnswer = 0;
@@ -113,32 +109,32 @@ function newGame() {
 }
 
 // new question
-function newQuestion(){
+function newQuestion() {
 	$('#message').empty();
 	$('#correctedAnswer').empty();
 	$('#jpg').empty();
 	answered = true;
 	
 	//sets up new questions & answerList
-	$('#currentQuestion').html('Question #'+(currentQuestion+1)+'/'+triviaQuestions.length);
+	$('#currentQuestion').html('Question #' + (currentQuestion + 1) + '/' + triviaQuestions.length);
 	$('.question').html('<h2>' + triviaQuestions[currentQuestion].question + '</h2>');
-	for(var i = 0; i < 4; i++){
-		var choices = $('<div>');
+	for (var i = 0; i < 4; i++) {
+		var choices = $('<div>').addClass('"btn btn-outline-dark"');
 		choices.text(triviaQuestions[currentQuestion].answerList[i]);
-		choices.attr({'data-index': i });
+		choices.attr({ 'data-index': i });
 		choices.addClass('thisChoice');
 		$('.answerList').append(choices);
 	}
 	countdown();
 	//clicking an answer will pause the time and setup answerPage
-	$('.thisChoice').on('click',function(){
+	$('.thisChoice').on('click', function () {
 		userSelect = $(this).data('index');
 		clearInterval(time);
 		answerPage();
 	});
 }
 
-function countdown(){
+function countdown() {
 	seconds = 10;
 	$('#timeLeft').html('<h3>Time Remaining: ' + seconds + '</h3>');
 	answered = true;
@@ -146,17 +142,17 @@ function countdown(){
 	time = setInterval(showCountdown, 1000);
 }
 
-function showCountdown(){
+function showCountdown() {
 	seconds--;
 	$('#timeLeft').html('<h3>Time Remaining: ' + seconds + '</h3>');
-	if(seconds < 1){
+	if (seconds < 1) {
 		clearInterval(time);
 		answered = false;
 		answerPage();
 	}
 }
 
-function answerPage(){
+function answerPage() {
 	$('#currentQuestion').empty();
 	$('.thisChoice').empty(); //Clears question page
 	$('.question').empty();
@@ -164,66 +160,42 @@ function answerPage(){
 	var rightAnswerText = triviaQuestions[currentQuestion].answerList[triviaQuestions[currentQuestion].answer];
 	var rightAnswerIndex = triviaQuestions[currentQuestion].answer;
 	// learned in slideshow class activity 5.2
-	$('#jpg').html('<img src = "./Assets/Images/'+ picArray[currentQuestion] +'.jpg" width = "300px" height = "300px">');
+	$('#jpg').html('<img src = "./Assets/Images/' + picArray[currentQuestion] + '.jpg" width = "300px" height = "300px">');
 	//checks to see correct, incorrect, or unanswered
-	if((userSelect == rightAnswerIndex) && (answered == true)){
+	if ((userSelect == rightAnswerIndex) && (answered == true)) {
 		correctAnswer++;
 		$('#message').html(messages.correct);
-	} else if((userSelect != rightAnswerIndex) && (answered == true)){
+	} else if ((userSelect != rightAnswerIndex) && (answered == true)) {
 		incorrectAnswer++;
 		$('#message').html(messages.incorrect);
 		$('#correctedAnswer').html('The correct answer was: ' + rightAnswerText);
-	} else{
+	} else {
 		unanswered++;
 		$('#message').html(messages.endTime);
 		$('#correctedAnswer').html('The correct answer was: ' + rightAnswerText);
 		answered = true;
 	}
 	
-	if(currentQuestion == (triviaQuestions.length-1)){
+	if (currentQuestion == (triviaQuestions.length - 1)) {
 		setTimeout(scoreboard, 3000)
-	} else{
+	} else {
 		currentQuestion++;
 		setTimeout(newQuestion, 3000);
 	}	
 
-// Not sure where to put this code so that it waits until the end of the game to start displaying messages 
-
-//	if (correctAnswer === 10){
-//		$('#message').html(messages.perfectScore)
-
-//	}
-//	if (correctAnswer > 7){
-//		$('#message').html(messages.goodScore)
-
-//	}
-//	if (correctAnswer > 4){
-//		$('#message').html(messages.okayScore)
-
-//	}
-
-//	if (correctAnswer > 0){
-//		$('#message').html(messages.badScore)
-
-//	}
-
-//	if (correctAnswer === 0){
-//		$('#message').html(messages.terribleScore)
-
-//	}
 }
 
-function scoreboard(){
+
+function scoreboard() {
 	$('#timeLeft').empty();
 	$('#message').empty();
 	$('#correctedAnswer').empty();
 	$('#jpg').empty();
-
 	$('#finalMessage').html(messages.finished);
 	$('#correctAnswers').html("Correct Answers: " + correctAnswer);
 	$('#incorrectAnswers').html("Incorrect Answers: " + incorrectAnswer);
 	$('#unanswered').html("Unanswered: " + unanswered);
-	$('#playAgainBtn').addClass('reset');
-	$('#playAgainBtn').show();
-	$('##playAgainBtn').html('Start Over?');
+	$('#playAgain').addClass('reset');
+	$('#playAgain').show();
+	$('#playAgain').html('Play Again?');
 }
